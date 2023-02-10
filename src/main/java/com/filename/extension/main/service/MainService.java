@@ -17,5 +17,6 @@ public interface MainService {
 	
 	boolean extensionDuplicatedCheck(String extension);
 	
+	void deleteAllCustomExtension();
 	
 }

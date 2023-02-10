@@ -86,5 +86,9 @@ public class MainDao {
 		}
 	}
 	
+	public void deleteAllCustomExtension() {
+		String sql = "DELETE FROM Extension WHERE defaultCheck = false";
+		jdbcTemplate.update(sql);
+	}
 	
 }

@@ -39,7 +39,7 @@ public class DataSourceConfig {
 		return new JdbcTemplate(dataSource());
 	}
 	
-//	main test bean name 등록 (@Autowired 를 main에서 사용이 안돼서 혹시나 아시는분 말씀좀!)
+//	main test bean name 등록 (@Autowired가 main에서 사용이 안된다.)
 	@Bean
 	public MainDao mainDao() {
 		return new MainDao(dataSource());

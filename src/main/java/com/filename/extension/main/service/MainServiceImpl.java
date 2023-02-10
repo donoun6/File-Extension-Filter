@@ -43,4 +43,9 @@ public class MainServiceImpl implements MainService{
 		return mainDao.extensionDuplicatedCheck(extension);
 	}
 
+	@Override
+	public void deleteAllCustomExtension() {
+		mainDao.deleteAllCustomExtension();
+	}
+
 }

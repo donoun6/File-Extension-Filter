@@ -22,27 +22,38 @@
 					<td>
 					<c:forEach items="${getExtensionByDefaultCheck }" var="getExtensionByDefaultCheck">
 						<c:set var="checkBox" value="${getExtensionByDefaultCheck.checkBox}"></c:set>
-						<label><input class="default" type="checkbox" value=${getExtensionByDefaultCheck.extension } name="extension" <c:if test="${checkBox == true}"> checked </c:if> >${getExtensionByDefaultCheck.extension }</label>
+						<label><input style="margin-left: 0;" class="default" type="checkbox" value=${getExtensionByDefaultCheck.extension } name="extension" <c:if test="${checkBox == true}"> checked </c:if> >${getExtensionByDefaultCheck.extension }</label>
 					</c:forEach>
 					<td>
 				</tr>
 				<tr>
 					<td>커스텀확장자</td>
-					<td><input class="extensionType" type="text" placeholder="확장자 입력"><button class="addExtension">추가</button></td>
+					<td><input class="extensionType" type="text" placeholder="확장자 입력 후 엔터를 누르세요."><button class="addExtension">+추가</button></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td><div id="ajaxReturn"></div></td>
+					<td><div id="ajaxReturn"></div> <button class="initial">초기화</button></td>
 				</tr>
 			</table>
 		</article>
 		<footer><p>Copyright &copy; donoun6 2023</p></footer>
 	</div>
+	<div class="popUp">
+		<div class="popUpWrap">
+			<div>
+				<h2>초기화 하시겠습니까?</h2>
+				<div class="btnBox">
+					<form method="post"><button class="yes" type="submit">네</button></form>
+					<button class="no">아니요</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 </main>
+<!-- Script Zone -->
   <script>
- 
-    $(function(){
-    	
+    $(function(){//jquery
     	$(document).ready(function(){//DOM 이 생성된후 호출하는 callback함수 
 			$(".addExtension").trigger("click"); //해당 클래스에 trigger메서드를 사용하여 자동으로 클릭
 		});
@@ -83,6 +94,13 @@
             }
         });
      
+    	$(".initial").click(function(){
+    		$(".popUp").addClass("on");
+    	});
+    	
+    	$(".no").click(function(){
+    		$(".popUp").removeClass("on");
+    	});
     	
     });
   </script>

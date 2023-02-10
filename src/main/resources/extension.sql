@@ -17,8 +17,9 @@ INSERT INTO Extension(extension,defaultCheck) VALUES('js',true);
 
 --테이블 생성
 CREATE TABLE Extension(
-	extension		VARCHAR(20)		NOT NULL PRIMARY KEY,
+	eid				BIGINT			NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	extension		VARCHAR(20)		NOT NULL UNIQUE,
 	defaultCheck	BOOLEAN			NOT NULL DEFAULT FALSE,
-	checkBox		BOOLEAN			NULL
-)
+	checkBox		BOOLEAN			NULL DEFAULT FALSE
+)AUTO_INCREMENT = 1;
 
