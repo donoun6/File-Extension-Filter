@@ -4,17 +4,21 @@
 
 <!DOCTYPE html>
 <html>
-<p>${getCountBydefaultCheckFalse }/200</p>
-	<c:forEach items="${getExtensionByDefaultCheck }" var="getExtensionByDefaultCheck" >
-		<span>${getExtensionByDefaultCheck.extension }<button class="deleteExtension" value="${getExtensionByDefaultCheck.extension }">X</button></span>
-	</c:forEach>
+
+	<span class="errBox">${duplicateErr }${addErr }${stringErr }</span>
+	<div class="ajaxWrap">
+	<p class="countBox">${getCountBydefaultCheckFalse }/200</p>
+		<c:forEach items="${getExtensionByDefaultCheck }" var="getExtensionByDefaultCheck" >
+			<span class="customExtension">${getExtensionByDefaultCheck.extension }<button class="deleteExtension" value="${getExtensionByDefaultCheck.extension }">X</button></span>
+		</c:forEach>
+	</div>
 	  <script>
  
     $(function(){
     	
-    	$(".deleteExtension").click(function(){
-    		location.reload();
-    		var type = $(this).val();
+    	$(".deleteExtension").click(function(){ 
+    		location.reload(); //화면 새로고침
+    		var type = $(this).val();//삭제할 커스텀 확장자
     		$.ajax({
 				async: true,
 				type: 'POST',

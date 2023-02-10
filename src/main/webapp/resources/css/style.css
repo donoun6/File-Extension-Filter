@@ -1,0 +1,108 @@
+@charset "EUC-KR";
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+main {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #dad3e6;
+}
+
+.wrap {
+	width: 960px;
+    height: 480px;
+    border-radius: 30px;
+    background: #fafafa;
+}
+
+article{
+	position: relative;
+    width: 480px;
+    height: 480px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.title{
+	font-size: 50px;
+    padding-top: 48px;
+}
+
+table {
+	margin-top: 40px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 480px;
+}
+
+tr {
+	height: 48px;
+}
+
+td {
+	text-align: left;
+}
+
+.addExtension{
+	margin-left: 10px;
+}
+
+.ajaxWrap{
+	width: 275px;
+    height: 172px;
+    border: 1px solid;
+    border-radius: 15px;
+    padding: 8px;
+    overflow: scroll;
+}
+
+.ajaxWrap{
+	-ms-overflow-style:none; /* IE and Edge */
+    scrollbar-width:none; /* Firefox */
+}
+
+.ajaxWrap::-webkit-scrollbar {
+	display:none; /* Chrome , Safari , Opera */
+}
+
+.errBox {
+	color: red;
+    position: absolute;
+    top: 214px;
+    font-size: 12px;
+}
+
+.countBox {
+	font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.customExtension {
+	display: inline-block;
+    padding: 3px;
+    margin: 3px;
+    border: 1px solid;
+    border-radius: 5px;
+    font-size: 12px;
+}
+.deleteExtension{
+	font-size: 1px;
+    margin: 0 2px 0 5px;
+    padding: 0;
+    width: 15px;
+}
+
+footer{
+	position: absolute;
+    margin: 0 auto;
+    bottom: 24px;
+    width: 960px;
+    text-align: center;
+    color: #6e6d6e;
+}

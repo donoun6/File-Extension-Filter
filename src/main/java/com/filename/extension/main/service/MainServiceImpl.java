@@ -38,4 +38,9 @@ public class MainServiceImpl implements MainService{
 		return mainDao.getCountBydefaultCheckFalse();
 	}
 
+	@Override
+	public boolean extensionDuplicatedCheck(String extension) {
+		return mainDao.extensionDuplicatedCheck(extension);
+	}
+
 }

@@ -1,8 +1,8 @@
 package com.filename.extension.main.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,25 +28,38 @@ public class MainController {
 	
 	@GetMapping
 	public String mainPage(Model model) {
-		model.addAttribute("main",new MainDomain());
-		model.addAttribute("getExtensionByDefaultCheck",mainService.getExtensionByDefaultCheck(true));
+		List<MainDomain> defaultExtension = mainService.getExtensionByDefaultCheck(true); //고정확장자
+		model.addAttribute("getExtensionByDefaultCheck", defaultExtension);
 		return "index";
 	}
 	
 	@RequestMapping("DefaultVal")
 	@ResponseBody // HTTP(Hyper Text Transfer Protocol)통신을 이용해 비동기 통신을 할때에 body공간에 데이터를 담는다.
 	public void DefaultVal(@RequestBody Map<String, Object> allData) {
-		String defaultVal = (String)allData.get("defaultVal");
-		boolean check = (boolean)allData.get("checked");
+		String defaultVal = (String)allData.get("defaultVal"); //고정 확장자의 값
+		boolean check = (boolean)allData.get("checked"); //체크박스 체크 유무
 		mainService.updateCheckBoxByextension(check, defaultVal);
 	}
 	
 	@GetMapping("addType")
 	public String ajax(Model model, HttpServletRequest request, HttpServletResponse response) {
-		String extension = request.getParameter("type");
-		if(extension!="") mainService.addExtension(extension);
-		model.addAttribute("getExtensionByDefaultCheck",mainService.getExtensionByDefaultCheck(false));
-		model.addAttribute("getCountBydefaultCheckFalse",mainService.getCountBydefaultCheckFalse());
+		String extension = request.getParameter("type"); //입력값 추가 확장자
+		int count = mainService.getCountBydefaultCheckFalse();//커스텀확장자 개수
+		boolean DupCheck = mainService.extensionDuplicatedCheck(extension);//동일 확장자 체크
+		boolean StringCheck = Pattern.matches("^[a-zA-Z]{3,20}$", extension); //문자열 유효성검사
+		boolean ready = extension == "" ? false : true; 
+		
+		if(!DupCheck && ready && count < 200 && StringCheck) mainService.addExtension(extension);
+		
+		count = mainService.getCountBydefaultCheckFalse();
+		
+		if(!StringCheck && ready) model.addAttribute("stringErr", "3~20자의 영문 대 소문자를 사용하세요.");
+		else if(count >= 200) model.addAttribute("addErr", "더이상 추가할 수 없습니다.");
+		else if(DupCheck) model.addAttribute("duplicateErr", "해당 확장자는 이미 등록된 확장자 입니다.");
+		
+		List<MainDomain> addExtension = mainService.getExtensionByDefaultCheck(false); //커스텀확장자
+		model.addAttribute("getExtensionByDefaultCheck", addExtension);
+		model.addAttribute("getCountBydefaultCheckFalse", count);
 		return "main/mainAjax";
 	}
 	

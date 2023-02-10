@@ -17,9 +17,8 @@ INSERT INTO Extension(extension,defaultCheck) VALUES('js',true);
 
 --테이블 생성
 CREATE TABLE Extension(
-	extension		VARCHAR(20)		NOT NULL,
+	extension		VARCHAR(20)		NOT NULL PRIMARY KEY,
 	defaultCheck	BOOLEAN			NOT NULL DEFAULT FALSE,
 	checkBox		BOOLEAN			NULL
 )
 
-SELECT COUNT(*) FROM Extension WHERE defaultCheck = false;
